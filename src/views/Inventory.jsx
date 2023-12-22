@@ -1,9 +1,10 @@
 // Table.jsx
 import React, { useState } from 'react';
-import Row from './Row';
-import SearchBar from './SearchBar';
+import Row from '../components/Row';
+import SearchBar from '../components/SearchBar';
 
-const Table = ({ rows }) => {
+
+const Inventory = ({ rows }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const filteredRows = rows.filter((row) =>
@@ -15,13 +16,20 @@ const Table = ({ rows }) => {
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
       <table>
         <tbody>
+          <tr>
+            <th>Id</th>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+          </tr>
           {filteredRows.map((rowData, index) => (
             <Row key={index} data={rowData} />
           ))}
         </tbody>
       </table>
+
     </div>
   );
 };
 
-export default Table;
+export default Inventory;
