@@ -15,7 +15,7 @@ const Providers = ({ rows }) => {
   return (
     <div>
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-      <table>
+      <table className="table table-striped">
         <tbody>
           <tr>
             <th>Id</th>
@@ -23,6 +23,10 @@ const Providers = ({ rows }) => {
             <th>Nombre</th>
             <th>Email</th>
             <th>Telefono</th>
+            <th>Acciones</th>
+            <th></th>
+            <th></th>
+
           </tr>
           {filteredRows.map((rowData, index) => (
             <Row key={index} data={Object.values(rowData)} />

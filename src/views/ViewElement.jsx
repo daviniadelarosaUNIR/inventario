@@ -19,19 +19,17 @@ const ViewElement = () => {
 
   const commonDetails = (
     <div>
-      <h2>Detalles del {id < 100 ? 'Elemento' : 'Proveedor'}</h2>
-      <p>ID: {rowData.id}</p>
-      <p>Imagen:</p>
-      <img src={"../" + rowData.image} alt="Elemento" height={50} width={100}></img>
-      <p>Nombre: {rowData.name}</p>
+      <h5 className="card-title">Información</h5>
+      <p className="card-text">ID: {rowData.id}</p>
+      <p className="card-text">Nombre: {rowData.name}</p>
     </div>
   );
 
   const specificDetails = id < 100 ? (
     <div>
       {commonDetails}
-      <p>Cantidad: {rowData.quantity}</p>
-      <p>Proveedor: {rowData.provider}</p>
+      <p className="card-text">Stock: {rowData.quantity}</p>
+      <p className="card-text">Proveedor: {rowData.provider}</p>
     </div>
   ) : (
     <div>
@@ -42,9 +40,19 @@ const ViewElement = () => {
   );
 
   return (
-    <div>
-      {specificDetails}
+
+<div className="card mb-3 card" style={{ maxWidth: '540px' }}>
+  <div className="row g-0">
+    <div className="col-md-4">
+      <img src={"../" + rowData.image} className="img-fluid rounded-start" alt="Elemeto"/>
     </div>
+    <div className="col-md-8">
+      <div className="card-body">
+      {specificDetails}
+      </div>
+    </div>
+  </div>
+</div>
   );
 };
 

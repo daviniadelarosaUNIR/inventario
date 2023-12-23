@@ -51,7 +51,7 @@ const UpdateElement = () => {
         <br />
         <input type="text" name="name" defaultValue={rowData.name} />
         <br />
-        <label htmlFor="quantity">Cantidad</label>
+        <label htmlFor="quantity">Stock</label>
         <br />
         <input type="number" name="quantity" defaultValue={rowData.quantity} />
         <br />

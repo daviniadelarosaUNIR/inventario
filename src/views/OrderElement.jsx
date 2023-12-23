@@ -36,7 +36,7 @@ const OrderElement = () => {
     <div>
       {commonDetails}
       <form>
-        <label htmlFor="quantity">Cantidad</label>
+        <label htmlFor="quantity">Stock</label>
         <br />
         <input type="number" name="quantity" defaultValue={rowData.quantity} />
         <br />

@@ -14,6 +14,6 @@ export const Action = ({ text, path, delay }) => {
     };
 
     return (
-        <button onClick={handleClick} disabled={isRedirecting}>{text}</button>
+        <button className="btn btn-primary" onClick={handleClick} disabled={isRedirecting}>{text}</button>
     );
 };
