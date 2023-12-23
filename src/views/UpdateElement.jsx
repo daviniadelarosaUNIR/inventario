@@ -1,56 +1,101 @@
-// ViewElement.jsx
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Action } from '../components/Action';
-import {useElements} from "../hooks/useElements";
+import { useElements } from '../hooks/useElements';
 
-const ViewElement = () => {
+const UpdateElement = () => {
   const { id } = useParams();
+  const { data: elements, updateElement } = useElements();
+  const navigate = useNavigate();
 
-  let elements = useElements();
-  let rowData;
-  if(id<100){
-    elements= elements[0];
-    rowData = elements[id-1];
-  }else{
-    elements = elements[1];
-    rowData = elements[id-101];
-  }
+  const [rowData, setRowData] = useState(null);
+
+  useEffect(() => {
+    const foundElement = elements.find(element => element.id === id);
+    setRowData(foundElement);
+  }, [id, elements]);
+
+  const handleUpdate = () => {
+    const updatedData = {
+      name: document.getElementsByName('name')[0].value,
+      quantity: document.getElementsByName('quantity')[0]?.value,
+      email: document.getElementsByName('email')[0]?.value,
+      phone: document.getElementsByName('phone')[0]?.value,
+    };
+
+    // Actualizar el elemento utilizando el hook
+    updateElement(id, updatedData);
+
+    // Redirigir a la página correspondiente
+    navigate(id < 100 ? '/inventory' : '/providers');
+  };
 
   if (!rowData) {
     return <div>Buscando elemento</div>;
   }
 
-  return (
+  const commonDetails = (
     <div>
-      <h2>Detalles del Elemento</h2>
-      <p>ID: {rowData[0]}</p>
-      <p>Imagen:</p> 
-      <img src={"../"+rowData[1]} alt="Elemento" height={50} width={100}></img>
-      <form >
-        <label htmlFor="nombre">Nombre</label>
+      <h2>Detalles del {id < 100 ? 'Elemento' : 'Proveedor'}</h2>
+      <p>ID: {rowData.id}</p>
+      <p>Imagen:</p>
+      <img src={"../" + rowData.image} alt="Elemento" height={50} width={100}></img>
+    </div>
+  );
+
+  const specificDetails = id < 100 ? (
+    <div>
+      {commonDetails}
+      <form>
+        <label htmlFor="name">Nombre</label>
         <br />
-        <input type="text" name="nombre" id="" defaultValue={rowData[2]}/>
+        <input type="text" name="name" defaultValue={rowData.name} />
         <br />
-        <label htmlFor="cantidad">Cantidad</label>
+        <label htmlFor="quantity">Cantidad</label>
         <br />
-        <input type="number" name="cantidad" id="" defaultValue={rowData[3]}/>
+        <input type="number" name="quantity" defaultValue={rowData.quantity} />
         <br />
-        <Action text="Modificar" path="/modifiedelement" delay={1000} />
+        <label htmlFor="provider">Cantidad</label>
+        <br />
+        <input type="text" name="provider" defaultValue={rowData.provider} />
+        <br />
+        <Action text="Modificar" onClick={handleUpdate} path="/modifiedelement" delay={1000}/>
+        <br />
+        <Action text="Eliminar" path="/modifiedelement" delay={1000}/>
         <br />
         <br />
       </form>
-      
+    </div>
+  ) : (
+    <div>
+      {commonDetails}
+      <form>
+        <label htmlFor="name">Nombre</label>
+        <br />
+        <input type="text" name="name" defaultValue={rowData.name} />
+        <br />
+        <label htmlFor="email">Email</label>
+        <br />
+        <input type="text" name="email" defaultValue={rowData.email} />
+        <br />
+        <label htmlFor="phone">Teléfono</label>
+        <br />
+        <input type="text" name="phone" defaultValue={rowData.phone} />
+        <br />
+        <Action text="Modificar" onClick={handleUpdate} path="/modifiedelement" delay={1000}/>
+        <br />
+        <Action text="Eliminar" path="/modifiedelement" delay={1000}/>
+        <br />
+        <br />
+      </form>
+    </div>
+  );
 
-      <Action text="Inventory" path="/inventory" delay={1000} />
-
+  return (
+    <div>
+      {specificDetails}
     </div>
   );
 };
 
-export default ViewElement;
-
-
-
-
-
+export default UpdateElement;

@@ -11,7 +11,7 @@ const Row = ({ data }) => {
       ))}
       <td><Action text="Ver" path={'/viewelement/'+data[0]} delay={0} /></td>
       <td><Action text="Modificar" path={'/updateelement/'+data[0]}delay={1000} /></td>
-      <td><Action text="Realizar Pedido" path="/orderelement" delay={1000} /></td>
+      <td><Action text="Realizar Pedido" path={"/orderelement/"+data[0]} delay={1000} /></td>
     </tr>
   );
 };

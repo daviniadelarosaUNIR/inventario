@@ -1,32 +1,31 @@
-import {useEffect, useState} from "react";
-export const useElements = () => {
-    const [elements, setElements] = useState([]);
-    const [providers, setProviders] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setElements( [
-                ['1','keyboard.png', 'Teclado', 4],
-                ['2','mouse.png', 'Ratón', 10],
-                ['3','pc.png', 'PC', 5],
-              ]);
-            setProviders( [
-                ['101','p.png','Keyboards Provider', 'keyboards@provider.com', '910000000'],
-                ['102','p.png','Mouse Provider', 'mouse@provider.com', '910000001'],
-                ['103','p.png','PC Provider', 'pc@provider.com', '910000002'],
-              ]);
-        }, 2500);
-        
-    }, []);
-    const updateElement = (id, newData) => {
-        setElements(prevElements => {
-          return prevElements.map(element => {
-            if (element[0] === id) {
-              return [...element.slice(0, 4), ...newData]; // Actualiza solo las propiedades necesarias
-            }
-            return element;
-          });
-        });
-      };
+import { useEffect, useState } from "react";
 
-    return [elements, providers, updateElement];
-}
+export const useElements = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setData([
+        { id: '1', image: 'keyboard.png', name: 'Teclado', quantity: 4, provider: '101' },
+        { id: '2', image: 'mouse.png', name: 'Ratón', quantity: 10, provider: '102' },
+        { id: '3', image: 'pc.png', name: 'PC', quantity: 5, provider: '103' },
+        { id: '101', image: 'p.png', name: 'Keyboards Provider', email: 'keyboards@provider.com', phone: '910000000' },
+        { id: '102', image: 'p.png', name: 'Mouse Provider', email: 'mouse@provider.com', phone: '910000001' },
+        { id: '103', image: 'p.png', name: 'PC Provider', email: 'pc@provider.com', phone: '910000002' },
+      ]);
+    }, 2500);
+  }, []);
+
+  const updateElement = (id, newData) => {
+    setData(prevData => {
+      return prevData.map(element => {
+        if (element.id === id) {
+          return { ...element, ...newData };
+        }
+        return element;
+      });
+    });
+  };
+
+  return { data, updateElement };
+};
