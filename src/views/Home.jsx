@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div>
-      <h1>Bienvenido a Inventory App</h1>
+      <h1>Bienvenid@ a Inventory App</h1>
     </div>
   );
 }

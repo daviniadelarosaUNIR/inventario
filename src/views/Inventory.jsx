@@ -16,6 +16,8 @@ const Inventory = ({ rows }) => {
   return (
     <div>
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+      <br />
+      
       <table className="table table-striped">
         <tbody>
           <tr>
@@ -24,8 +26,8 @@ const Inventory = ({ rows }) => {
             <th>Nombre</th>
             <th>Stock</th>
             <th>Proveedor</th>
-            <th>Acciones</th>
             <th></th>
+            <th>Acciones</th>
             <th></th>
           </tr>
           {filteredRows.map((rowData, index) => (

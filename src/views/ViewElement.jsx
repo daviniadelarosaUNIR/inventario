@@ -14,7 +14,7 @@ const ViewElement = () => {
   }, [id, elements]);
 
   if (!rowData) {
-    return <div>Buscando elemento</div>;
+    return <h1>Buscando elemento...</h1>;
   }
 
   const commonDetails = (

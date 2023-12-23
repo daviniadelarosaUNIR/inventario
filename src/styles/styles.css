@@ -2,18 +2,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Asegura que el contenedor ocupa toda la altura de la ventana */
-    margin: 0; /* Elimina el margen predeterminado del body */
-    background-image: url('../../public/fondo.png'); /* Reemplaza 'ruta/a/tu/imagen.jpg' con la ruta de tu imagen */
-    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
-    background-position: center; /* Centra la imagen en el fondo */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    height: 100vh; 
+    margin: 0; 
+    /*Estios para la imagen de fondo de todas las vistas*/
+    background-image: url('../../public/fondo.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
 }
-
+/*Cambio de color de las tarjetas de Bootstrap*/
 .card{
-    background-color: rgb(206, 200, 223);
+    background-color: rgb(216, 216, 231);
 }
-
+/* header fija arriba */
 .header {
     position: fixed;
     top: 0;
@@ -21,12 +22,30 @@ body{
     width: 100%;
 }
 
+/* Footer fijo abajo y con colores para el fondo y e texto*/
 .footer{
-
+    padding: 2%;
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: blue;
-    color: aliceblue;
+    background-color: rgb(216, 216, 231);
+    color: rgb(90, 122, 150);
 }
+/*Uso de flexbos para posicionar los elementos*/
+.footer-icons {
+    display: flex;
+    justify-content: center;
+}
+/*Enlaces a los que apuntan los iconos del footer*/
+.footer-icons a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+.footer-icons img {
+    width: 30px; /* Tamaño de los iconos del footer */
+    height: 30px;
+}
+

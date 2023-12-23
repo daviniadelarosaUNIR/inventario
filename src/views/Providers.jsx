@@ -15,6 +15,8 @@ const Providers = ({ rows }) => {
   return (
     <div>
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
+      <br />
+      <br />
       <table className="table table-striped">
         <tbody>
           <tr>
@@ -23,8 +25,8 @@ const Providers = ({ rows }) => {
             <th>Nombre</th>
             <th>Email</th>
             <th>Telefono</th>
-            <th>Acciones</th>
             <th></th>
+            <th>Acciones</th>
             <th></th>
 
           </tr>

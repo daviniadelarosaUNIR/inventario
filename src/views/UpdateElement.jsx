@@ -31,15 +31,13 @@ const UpdateElement = () => {
   };
 
   if (!rowData) {
-    return <div>Buscando elemento</div>;
+    return <h1>Buscando elemento...</h1>;
   }
 
   const commonDetails = (
     <div>
-      <h2>Detalles del {id < 100 ? 'Elemento' : 'Proveedor'}</h2>
+      <h3>Detalles del {id < 100 ? 'Elemento' : 'Proveedor'}</h3>
       <p>ID: {rowData.id}</p>
-      <p>Imagen:</p>
-      <img src={"../" + rowData.image} alt="Elemento" height={50} width={100}></img>
     </div>
   );
 
@@ -59,11 +57,11 @@ const UpdateElement = () => {
         <br />
         <input type="text" name="provider" defaultValue={rowData.provider} />
         <br />
+        <br />
         <Action text="Modificar" onClick={handleUpdate} path="/modifiedelement" delay={1000}/>
         <br />
+        <br />
         <Action text="Eliminar" path="/modifiedelement" delay={1000}/>
-        <br />
-        <br />
       </form>
     </div>
   ) : (
@@ -82,19 +80,28 @@ const UpdateElement = () => {
         <br />
         <input type="text" name="phone" defaultValue={rowData.phone} />
         <br />
+        <br />
         <Action text="Modificar" onClick={handleUpdate} path="/modifiedelement" delay={1000}/>
         <br />
+        <br />
         <Action text="Eliminar" path="/modifiedelement" delay={1000}/>
-        <br />
-        <br />
       </form>
     </div>
   );
 
   return (
-    <div>
-      {specificDetails}
+    <div className="card mb-3 card" style={{ maxWidth: '540px' }}>
+  <div className="row g-0">
+    <div className="col-md-4">
+      <img src={"../" + rowData.image} className="img-fluid rounded-start" alt="Elemeto"/>
     </div>
+    <div className="col-md-8">
+      <div className="card-body">
+      {specificDetails}
+      </div>
+    </div>
+  </div>
+</div>
   );
 };
 

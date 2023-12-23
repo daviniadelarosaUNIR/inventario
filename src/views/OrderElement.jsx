@@ -15,33 +15,30 @@ const OrderElement = () => {
     setRowData(foundElement);
   }, [id, elements]);
 
-
-
   if (!rowData) {
-    return <div>Buscando elemento</div>;
+    return <h1>Buscando elemento...</h1>;
   }
 
   const commonDetails = (
     <div>
-      <h2>Detalles del {id < 100 ? 'Elemento' : 'Proveedor'}</h2>
+      <h3>Detalles del {id < 100 ? 'Elemento' : 'Proveedor'}</h3>
       <p>ID: {rowData.id}</p>
-      <p>Imagen:</p>
-      <img src={"../" + rowData.image} alt="Elemento" height={50} width={100}></img>
       <p>Nombre: {rowData.name}</p>
-      <p>Proveedor: {rowData.provider}</p>
+
     </div>
   );
 
   const specificDetails = id < 100 ? (
     <div>
       {commonDetails}
+      <p>Provvedor: {rowData.provider}</p>
       <form>
         <label htmlFor="quantity">Stock</label>
         <br />
         <input type="number" name="quantity" defaultValue={rowData.quantity} />
         <br />
-        <Action text="Pedir"  path="/orderedelement" delay={1000}/>
         <br />
+        <Action text="Pedir"  path="/orderedelement" delay={1000}/>
         <br />
         <br />
       </form>
@@ -49,15 +46,24 @@ const OrderElement = () => {
   ) : (
     <div>
       {commonDetails}
-      <p>Debes realizar el pedido por medio de la vista de elementos</p>
+      <p>Email: {rowData.email}</p>
+      <b>Debes realizar el pedido por medio de la vista de elementos</b>
     </div>
   );
 
   return (
-    <div>
-      {specificDetails}
-      <Action text={id < 100 ? 'Inventory' : 'Providers'} path={id < 100 ? '/inventory' : '/providers'} delay={1000} />
+    <div className="card mb-3 card" style={{ maxWidth: '540px' }}>
+  <div className="row g-0">
+    <div className="col-md-4">
+      <img src={"../" + rowData.image} className="img-fluid rounded-start" alt="Elemeto"/>
     </div>
+    <div className="col-md-8">
+      <div className="card-body">
+      {specificDetails}
+      </div>
+    </div>
+  </div>
+</div>
   );
 };
 
